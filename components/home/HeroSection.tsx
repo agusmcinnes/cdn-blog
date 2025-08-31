@@ -142,48 +142,7 @@ export default function HeroSection({ categories }: HeroSectionProps) {
       </div>
 
       {/* Transición elegante hacia las noticias */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-0">
-        {/* Gradiente principal */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-slate-50/60 to-transparent"></div>
-        
-        {/* Capa de ondas sutiles */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 opacity-20">
-          <svg 
-            viewBox="0 0 1200 120" 
-            preserveAspectRatio="none" 
-            className="w-full h-full"
-          >
-            <defs>
-              <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="rgba(148, 163, 184, 0.08)" />
-                <stop offset="100%" stopColor="rgba(255, 255, 255, 0.6)" />
-              </linearGradient>
-              <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="rgba(59, 130, 246, 0.03)" />
-                <stop offset="100%" stopColor="rgba(255, 255, 255, 0.7)" />
-              </linearGradient>
-            </defs>
-            
-            {/* Primera onda */}
-            <path 
-              d="M0,60 C300,90 900,30 1200,60 L1200,120 L0,120 Z" 
-              fill="url(#waveGradient1)"
-              className="animate-pulse"
-            />
-            
-            {/* Segunda onda */}
-            <path 
-              d="M0,80 C400,50 800,110 1200,80 L1200,120 L0,120 Z" 
-              fill="url(#waveGradient2)"
-              className="animate-pulse"
-              style={{ animationDelay: '1s' }}
-            />
-          </svg>
-        </div>
 
-        {/* Gradiente de transición final */}
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-white/10"></div>
-      </div>
     </section>
   )
 }

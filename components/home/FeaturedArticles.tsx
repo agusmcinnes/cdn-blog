@@ -28,7 +28,7 @@ export default function FeaturedArticles({ posts, postsError }: FeaturedArticles
             {posts.map((post, index) => (
               <Card
                 key={post.id}
-                className={`hover:shadow-lg transition-shadow ${index === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
+                className={`p-0 pb-6 hover:shadow-lg transition-shadow ${index === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
               >
                 <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-lg relative overflow-hidden">
                   {post.youtube_url ? (

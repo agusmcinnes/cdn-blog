@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import PageLayout from "@/components/layout/PageLayout"
+import Breadcrumb from "@/components/ui/breadcrumb-custom"
 import Link from "next/link"
 import Image from "next/image"
 import { notFound, redirect } from "next/navigation"
@@ -40,37 +42,15 @@ export default async function CategoryPage({ params }: PageProps) {
     const { data: allCategories } = await supabase.from("categories").select("*").order("name")
 
     return (
-      <div className="min-h-screen bg-white">
-        {/* Header */}
-        <header className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">CDN</span>
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Crítica del Nea</h1>
-                </div>
-              </Link>
-              <nav className="hidden md:flex items-center gap-6">
-                {allCategories?.slice(0, 5).map((cat) => (
-                  <Link
-                    key={cat.id}
-                    href={`/${cat.slug}`}
-                    className="font-medium text-gray-700 hover:text-green-600 transition-colors"
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </header>
-
+      <PageLayout categories={allCategories}>
         {/* All Posts Header */}
         <section className="bg-gradient-to-br from-green-50 to-blue-50 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumb 
+              items={[
+                { label: "Todas las categorías" }
+              ]} 
+            />
             <div className="text-center">
               <Badge variant="secondary" className="bg-green-100 text-green-700 mb-4">
                 Todas las Categorías
@@ -151,7 +131,7 @@ export default async function CategoryPage({ params }: PageProps) {
             )}
           </div>
         </section>
-      </div>
+      </PageLayout>
     )
   }
 
@@ -189,39 +169,15 @@ export default async function CategoryPage({ params }: PageProps) {
   const { data: allCategories } = await supabase.from("categories").select("*").order("name")
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">CDN</span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Crítica del Nea</h1>
-              </div>
-            </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              {allCategories?.slice(0, 5).map((cat) => (
-                <Link
-                  key={cat.id}
-                  href={`/${cat.slug}`}
-                  className={`font-medium transition-colors ${
-                    cat.slug === category ? "text-green-600" : "text-gray-700 hover:text-green-600"
-                  }`}
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <PageLayout categories={allCategories}>
       {/* Category Header */}
       <section className="bg-gradient-to-br from-green-50 to-blue-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumb 
+            items={[
+              { label: categoryData.name }
+            ]} 
+          />
           <div className="text-center">
             <Badge variant="secondary" className="bg-green-100 text-green-700 mb-4">
               {categoryData.name}
@@ -302,6 +258,6 @@ export default async function CategoryPage({ params }: PageProps) {
           )}
         </div>
       </section>
-    </div>
+    </PageLayout>
   )
 }
