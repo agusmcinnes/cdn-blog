@@ -1,12 +1,11 @@
 import { createClient } from "@/lib/supabase/server"
 import { 
-  Header, 
   HeroSection, 
   FeaturedArticles, 
   NewsletterSection, 
-  Footer, 
   LoadingError 
 } from "@/components/home"
+import PageLayout from "@/components/layout/PageLayout"
 
 export default async function HomePage() {
   console.log("[v0] HomePage: Starting to load data")
@@ -43,13 +42,11 @@ export default async function HomePage() {
     }
 
     return (
-      <div className="min-h-screen bg-white">
-        <Header categories={categories} />
+      <PageLayout categories={categories}>
         <HeroSection categories={categories} />
         <FeaturedArticles posts={featuredPosts} postsError={postsError} />
         <NewsletterSection />
-        <Footer categories={categories} />
-      </div>
+      </PageLayout>
     )
   } catch (error) {
     console.error("[v0] HomePage: Critical error:", error)
