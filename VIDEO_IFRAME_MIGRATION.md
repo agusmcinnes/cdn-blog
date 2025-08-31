@@ -14,6 +14,8 @@
 
 ### 3. Visualización de Artículos
 
+dd
+
 - Los artículos ahora muestran videos usando el código iframe HTML directamente
 - Mantiene compatibilidad con URLs de YouTube existentes
 - Soporte para cualquier plataforma de video (YouTube, Vimeo, etc.)
